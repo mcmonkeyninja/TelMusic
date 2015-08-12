@@ -10,6 +10,10 @@ but still in as organized of a fasion as possible.
 <img src="http://puu.sh/jyXne/d5529e9f34.jpg" alt="Error loading image">
 
 <h1>Changelog</h1>
+    Version 1.1
+        Fixed:
+            Fixed error with loading a playlist that contained a song that has a special character in it
+
     Version 1.0
     
     Additions:
