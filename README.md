@@ -12,12 +12,13 @@ but still in as organized of a fasion as possible.
 <h1>Changelog</h1>
     Version 0.8
     
-<h1>Additions</h1>
+    Additions:
     Added rewind/fast forward functionality
     Added volume slider
     Added option for pausing to scrub song (will result in less jerkiness of the slider)
     Added the ability to load a playlist
     
+    Fixes: 
     Fixed some settings not saving for next launch (Specifically color scheme)
     Fixed slider not being synced with music
     Fixed scrubbing not syncing with music
@@ -25,6 +26,7 @@ but still in as organized of a fasion as possible.
     Fixed selected album art from always being tied to be the same as the currently playing song's album art
     Fixed the presentation of invalid ID3 tagged songs (Blank artist, no song name, blank genre, etc.)
     
+    Changes:
     Changed song selection to left click to select song (viewed in left panel) and double click to play now
     Changed slight graphical effects (namely shadowing on top of selected album art)
 
