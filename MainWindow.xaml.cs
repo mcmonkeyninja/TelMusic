@@ -622,7 +622,7 @@ namespace TelMusic
 
                     for (int i = 0; i < NewLines.Length; i++)
                     {
-                        NewLines[i] = "s:" + ((muComp)(tierSongs.SelectedItems[i] as ListViewItem).Tag).Tags[0].ToString();
+                        NewLines[i] = "s|" + ((muComp)(tierSongs.SelectedItems[i] as ListViewItem).Tag).Tags[0].ToString();
                         Console.WriteLine(NewLines[i]);
                     }
 
@@ -646,15 +646,15 @@ namespace TelMusic
                     {
                         if (i == 0)
                         {
-                            NewLines[i] = "Name:" + np.playlistName;
+                            NewLines[i] = "Name|" + np.playlistName;
                         }
                         else if (i == 1)
                         {
-                            NewLines[i] = "Description: " + " no desc";
+                            NewLines[i] = "Description|" + " no desc";
                         }
                         else
                         {
-                            NewLines[i] = "s:" + ((muComp)(tierSongs.SelectedItems[i] as ListViewItem).Tag).Tags[0].ToString();
+                            NewLines[i] = "s|" + ((muComp)(tierSongs.SelectedItems[i] as ListViewItem).Tag).Tags[0].ToString();
                             Console.WriteLine(NewLines[i]);
                         }
                     }
