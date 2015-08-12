@@ -14,8 +14,8 @@ but still in as organized of a fasion as possible.
         Fixed:
             Fixed error with loading a playlist that contained a song that has a special character in it
 
+
     Version 1.0
-    
     Additions:
         Added Ability to save new playlist
         Added Ability to save selected songs to existing playlist
