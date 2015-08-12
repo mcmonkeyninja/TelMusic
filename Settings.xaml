@@ -1,0 +1,33 @@
+﻿<Window x:Class="TelMusic.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="471" Width="300" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <CheckBox Name="customSize" Checked="windowsSizeChecked" Content="Allow custom window size" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="This will break parts of the view (for now)" HorizontalAlignment="Left" Margin="30,25,0,0" VerticalAlignment="Top" Background="White" Foreground="#FFB9B9B9"/>
+        <CheckBox Name="importInvalidSongs" Content="Allow import of songs with invalid ID3 tags" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Checked="invalidSongChecked"/>
+        <Label Content="This may break alot of things, specifically song " HorizontalAlignment="Left" Margin="30,85,0,0" VerticalAlignment="Top" Background="White" Foreground="#FFB9B9B9" Height="30"/>
+        <Label Content="sorting and recognition" HorizontalAlignment="Left" Margin="30,97,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="#FFB9B9B9" Height="25"/>
+        <ComboBox Name="ColorSelection" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged">
+            <Label Background="#FFF44336" Content="Red" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FFE91E63" Content="Pink" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FF9C27B0" Content="Purple" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FF673AB7" Content="Deep Purple" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FF3F51B5" Content="Indigo" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FF2196F3" Content="Blue" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FF4CAF50" Content="Green" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FF009688" Content="Teal" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FFFFEB3B" Foreground="White" BorderThickness="0" Content="Yellow" Width="110"/>
+            <Label Background="#FFFFC107" Content="Amber" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FFFF9800" Content="Orange" Foreground="White" BorderThickness="0" Width="110"/>
+            <Label Background="#FFFF5722" Content="Deep Orange" Foreground="White" BorderThickness="0" Width="110"/>
+        </ComboBox>
+        <Label Content="Color Scheme" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top"/>
+        <Rectangle Name="colorRect" Fill="#FF2196F3" HorizontalAlignment="Left" Height="50                    " Stroke="Black" StrokeThickness="0" VerticalAlignment="Bottom" Width="294"/>
+        <Button Content="Reset Window Size" HorizontalAlignment="Left" Margin="1,0,0,50" VerticalAlignment="Bottom" Width="106" Background="#00DDDDDD" BorderThickness="1"/>
+        <Button Content="Ok" HorizontalAlignment="Right" Margin="0,0,1,50" VerticalAlignment="Bottom" Width="75" Background="White" Click="Button_Click"/>
+        <CheckBox x:Name="pauseToScrub" Content="Pause to scrub" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top" Checked="invalidSongChecked"/>
+        <Label Content="Will result in less jerkiness whilst scrubbing" HorizontalAlignment="Left" Margin="30,142,0,0" VerticalAlignment="Top" Background="White" Foreground="#FFB9B9B9"/>
+
+    </Grid>
+</Window>
