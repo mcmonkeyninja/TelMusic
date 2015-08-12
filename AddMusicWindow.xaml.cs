@@ -74,12 +74,13 @@ namespace TelMusic
 
                 //Can read file here
                 string[] Lines = System.IO.File.ReadAllLines(openFileDialog.FileName);
+                LoadedFiles = new List<string>();
 
                 foreach (string s in Lines)
                 {
-                    string value = s.Split(':')[1];
+                    string value = s.Split('|')[1];
 
-                    switch (s.Split(':')[0])
+                    switch (s.Split('|')[0])
                     {
                         case "Name":
                             PlaylistName = value;
@@ -113,6 +114,5 @@ namespace TelMusic
         {
             Button_Click(sender, e);
         }
-
     }
 }
