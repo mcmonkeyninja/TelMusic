@@ -6,10 +6,9 @@ player but with a modern design and simple feel. Every action you make (except a
 conducted within the initial, global screen. No switching panels, or new pages, everything is served to you then and there,
 but still in as organized of a fasion as possible.
 
-            <h2>TelMusic in its native Windows 10 glory</h2>
+            <h1>TelMusic in its native Windows 10 glory</h1>
             <img src="http://puu.sh/jykN5/63e4b19f55.jpg" alt="Error loading image">
 
-            <div id="changelog">
                 <h3> Version 0.8 Changelog</h3>
                     <h3>Additions</h3>
                     <ul>
