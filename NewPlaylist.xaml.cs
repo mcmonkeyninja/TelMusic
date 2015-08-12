@@ -33,6 +33,9 @@ namespace TelMusic
         {
             selectedOption = "EXISTING";
             existingPlaylistButton.Visibility = Visibility.Collapsed;
+            newPlaylistButton.Visibility = Visibility.Collapsed;
+            label.Visibility = Visibility.Collapsed;
+            label_Copy.Visibility = Visibility.Collapsed;
             label1.Visibility = Visibility.Visible;
             textBox.Visibility = Visibility.Visible;
         }
@@ -41,6 +44,9 @@ namespace TelMusic
         {
             selectedOption = "NEW";
             existingPlaylistButton.Visibility = Visibility.Collapsed;
+            newPlaylistButton.Visibility = Visibility.Collapsed;
+            label.Visibility = Visibility.Collapsed;
+            label_Copy.Visibility = Visibility.Collapsed;
             label1.Visibility = Visibility.Visible;
             textBox.Visibility = Visibility.Visible;
         }
