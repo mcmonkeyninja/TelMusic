@@ -15,8 +15,8 @@ but still in as organized of a fasion as possible.
 <li>Added rewind/fast forward functionality</li>
 <li>Added volume slider</li>
 <li>Added option for pausing to scrub song (will result in less jerkiness of the slider)</li>
-                        <li>Added the ability to load a playlist</li>
-                    </ul <h4 class="changeHeader">Fixes</h4>
+<li>Added the ability to load a playlist</li>
+</ul <h4 class="changeHeader">Fixes</h4>
 <ul>
 <li>Fixed some settings not saving for next launch (Specifically color scheme)</li>
 <li>Fixed slider not being synced with music</li>
