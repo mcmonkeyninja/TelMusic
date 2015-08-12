@@ -6,8 +6,6 @@ player but with a modern design and simple feel. Every action you make (except a
 conducted within the initial, global screen. No switching panels, or new pages, everything is served to you then and there,
 but still in as organized of a fasion as possible.
 
-<body>
-
     <div id="header">
         <h1>Information</h1>
     </div>
@@ -56,27 +54,7 @@ but still in as organized of a fasion as possible.
      text-align:left;
     padding:30px;
 }
-#changelog {
-     background-color:#eeeeee;
-     float:left;
-     padding:5px; 
-}
-#section {
-    float:left;
-     padding:10px; 
-}
-#footer {
-    background-color:black;
-     color:white;
-    clear:both;
-    text-align:center;
-     padding:5px; 
-}
-
-</style>
 
 
 </p
 </div>
-
-</body>
