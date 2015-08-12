@@ -214,7 +214,7 @@
             </Rectangle.Effect>
         </Rectangle>
         <Button x:Name="button" Content="Add Music" HorizontalAlignment="Left" Margin="64,0,0,65" VerticalAlignment="Bottom" Width="107" BorderBrush="White" Background="Transparent" Click="button_Click" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14"/>
-
+        <Button x:Name="savePlaylistButton" Content="Save Playlist" HorizontalAlignment="Left" Margin="154,0,0,64" VerticalAlignment="Bottom" Width="107" BorderBrush="White" Background="Transparent" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14" Grid.ColumnSpan="2" Click="savePlaylistButton_Click"/>
 
         <Button Content="Settings" HorizontalAlignment="Left" Margin="0,0,0,65" VerticalAlignment="Bottom" Width="75" BorderBrush="White" Background="Transparent" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14" Click="Button_Click_1"/>
         <Rectangle Name="rect2" Fill="#FF2196F3" Height="64" Stroke="Black" VerticalAlignment="Bottom" StrokeThickness="0" Grid.ColumnSpan="3">
@@ -274,6 +274,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
+        
 
     </Grid>
 </Window>

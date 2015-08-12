@@ -18,9 +18,6 @@ using System.Windows.Threading;
 
 namespace TelMusic
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         List<string> LoadedFiles;
@@ -41,11 +38,6 @@ namespace TelMusic
 
         muComp currentlyPlayingComp;
         TagLib.File currentlyPlayingTagLib;
-
-        // List<muComp> LoadedAlbums;
-        // List<muComp> LoadedArtist;
-
-
 
         public MainWindow()
         {
@@ -166,8 +158,8 @@ namespace TelMusic
         {
             if (tierSongs.SelectedItem != null)
             {
-                
-                
+
+
                 currentlyPlayingComp = ((muComp)(tierSongs.SelectedItem as ListViewItem).Tag);
                 currentlyPlayingTagLib = TagLib.File.Create(((muComp)(tierSongs.SelectedItem as ListViewItem).Tag).Tags[0].ToString());
                 currentlyPlayingComp.Tags[1] = tierSongs.SelectedIndex;
@@ -181,7 +173,7 @@ namespace TelMusic
 
                 PlayButton.Content = FindResource("Pause");
 
-                
+
 
                 SelectedAlbum.Content = "Album: " + currentlyPlayingTagLib.Tag.Album;
 
@@ -261,7 +253,7 @@ namespace TelMusic
                   true);
 
 
-            
+
         }
 
         private void timeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -611,6 +603,68 @@ namespace TelMusic
                 else
                 {
                     SongName.Content = currentlyPlayingTagLib.Tag.Title;
+                }
+            }
+        }
+
+        private void savePlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            NewPlaylist np = new NewPlaylist();
+            np.ShowDialog();
+
+            if (np.selectedOption == "EXISTING")
+            {
+
+            NoDirectoryFound:
+                if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + "\\My Playlists\\"))
+                {
+                    string[] NewLines = new string[tierSongs.SelectedItems.Count];
+
+                    for (int i = 0; i < NewLines.Length; i++)
+                    {
+                        NewLines[i] = "s:" + ((muComp)(tierSongs.SelectedItems[i] as ListViewItem).Tag).Tags[0].ToString();
+                        Console.WriteLine(NewLines[i]);
+                    }
+
+                    File.AppendAllLines(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + "\\My Playlists\\" + np.playlistName + ".playlist", NewLines);
+                }
+                else
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + "\\My Playlists\\");
+                    goto NoDirectoryFound;
+                }
+
+            }
+            else if (np.selectedOption == "NEW")
+            {
+            NoDirectoryFound:
+                if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + "\\My Playlists\\"))
+                {
+                    string[] NewLines = new string[tierSongs.SelectedItems.Count];
+
+                    for (int i = 0; i < NewLines.Length; i++)
+                    {
+                        if (i == 0)
+                        {
+                            NewLines[i] = "Name:" + np.playlistName;
+                        }
+                        else if (i == 1)
+                        {
+                            NewLines[i] = "Description: " + " no desc";
+                        }
+                        else
+                        {
+                            NewLines[i] = "s:" + ((muComp)(tierSongs.SelectedItems[i] as ListViewItem).Tag).Tags[0].ToString();
+                            Console.WriteLine(NewLines[i]);
+                        }
+                    }
+
+                    File.WriteAllLines(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + "\\My Playlists\\" + np.playlistName + ".playlist", NewLines);
+                }
+                else
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + "\\My Playlists\\");
+                    goto NoDirectoryFound;
                 }
             }
         }
