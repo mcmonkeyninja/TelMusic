@@ -84,7 +84,7 @@
             <ColumnDefinition Width="463*"/>
             <ColumnDefinition Width="309*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="tierArtist" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,0,170,64" BorderThickness="0" SelectionChanged="artistSelectionchanged" Foreground="Black" BorderBrush="White" HorizontalAlignment="Right" Width="175" Grid.Column="1">
+        <ListView x:Name="tierArtist" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,0,170,64" BorderThickness="0" SelectionChanged="artistSelectionchanged" Foreground="Black" BorderBrush="White" HorizontalAlignment="Right" Width="175" Grid.Column="1" VerticalAlignment="Top" Height="545">
 
             <ListView.View>
                 <GridView>
@@ -125,7 +125,7 @@
             </ListView.ItemContainerStyle>
 
         </ListView>
-        <ListView x:Name="tierSongs" Margin="0,0,0,64" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="songSelectionchanged" Foreground="Black" BorderBrush="White" HorizontalAlignment="Right" Grid.Column="2" Width="299" MouseDoubleClick="tierSongs_MouseDoubleClick">
+        <ListView x:Name="tierSongs" Margin="0,0,0,64" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="songSelectionchanged" Foreground="Black" BorderBrush="White" HorizontalAlignment="Right" Grid.Column="2" Width="299" MouseDoubleClick="tierSongs_MouseDoubleClick" VerticalAlignment="Top" Height="545">
             <ListView.View>
                 <GridView>
 
@@ -166,7 +166,7 @@
             </ListView.ItemContainerStyle>
 
         </ListView>
-        <ListView x:Name="tierAlbum" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,0,299,64" BorderThickness="0" SelectionChanged="albumSelectionchanged" Foreground="Black" BorderBrush="White" HorizontalAlignment="Right" Width="180" Grid.Column="1" Grid.ColumnSpan="2">
+        <ListView x:Name="tierAlbum" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,0,299,64" BorderThickness="0" SelectionChanged="albumSelectionchanged" Foreground="Black" BorderBrush="White" HorizontalAlignment="Right" Width="180" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Top" Height="545">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Albums" Width="190"></GridViewColumn>
@@ -208,15 +208,61 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
-        <Rectangle Name="rect1" Fill="#FF2196F3" Stroke="Black" StrokeThickness="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Width="295">
+        <Rectangle Name="rect1" Fill="#FF2196F3" Stroke="Black" StrokeThickness="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="295" VerticalAlignment="Top" Height="545">
             <Rectangle.Effect>
                 <DropShadowEffect Direction="90" Opacity="0.5" ShadowDepth="3"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Button x:Name="button" Content="Add Music" HorizontalAlignment="Left" Margin="64,0,0,65" VerticalAlignment="Bottom" Width="107" BorderBrush="White" Background="Transparent" Click="button_Click" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14"/>
-        <Button x:Name="savePlaylistButton" Content="Save Playlist" HorizontalAlignment="Left" Margin="154,0,0,64" VerticalAlignment="Bottom" Width="107" BorderBrush="White" Background="Transparent" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14" Grid.ColumnSpan="2" Click="savePlaylistButton_Click"/>
+        <Button x:Name="button" Content="Add Music" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" Width="89" BorderBrush="White" Background="Transparent" Click="button_Click" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14"/>
+        <Button x:Name="savePlaylistButton" Content="Save Playlist" HorizontalAlignment="Left" Margin="11,470,0,0" VerticalAlignment="Top" Width="78" BorderBrush="White" Background="Transparent" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14" Click="savePlaylistButton_Click"/>
 
-        <Button Content="Settings" HorizontalAlignment="Left" Margin="0,0,0,65" VerticalAlignment="Bottom" Width="75" BorderBrush="White" Background="Transparent" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14" Click="Button_Click_1"/>
+        <Button Content="Settings" HorizontalAlignment="Left" Margin="0,410,0,0" VerticalAlignment="Top" Width="75" BorderBrush="White" Background="Transparent" BorderThickness="0" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14" Click="Button_Click_1"/>
+        <Expander Name="showPlaylistExpander" Header="Show Playlist" HorizontalAlignment="Left" Margin="0,516,0,0" VerticalAlignment="Top" Foreground="White" BorderThickness="0" FontFamily="Microsoft Tai Le" FontSize="14" Collapsed="showPlaylistExpander_Collapsed" Expanded="showPlaylistExpander_Expanded" Grid.ColumnSpan="3" Height="188" Width="973" IsExpanded="false">
+
+        </Expander>
+        <ListView Name="playlists" HorizontalAlignment="Left" Height="128" Margin="0,545,0,-36" VerticalAlignment="Top" Width="973" Grid.ColumnSpan="3" BorderThickness="0" SelectionChanged="playlists_SelectionChanged">
+            <ListView.Effect>
+                <DropShadowEffect Direction="90" ShadowDepth="3" Opacity="0.5"/>
+            </ListView.Effect>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <Border CornerRadius="2" SnapsToDevicePixels="True"
+									BorderThickness="{TemplateBinding BorderThickness}" 
+									BorderBrush="{TemplateBinding BorderBrush}" 
+									Background="{TemplateBinding Background}">
+                                    <Border x:Name="InnerBorder" CornerRadius="0"   BorderThickness="1">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition MaxHeight="30" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <Rectangle x:Name="UpperHighlight" Visibility="Collapsed" Fill="#FF2196F3" />
+                                            <GridViewRowPresenter Grid.RowSpan="2" 
+												VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+												SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#FF2196F3"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
         <Rectangle Name="rect2" Fill="#FF2196F3" Height="64" Stroke="Black" VerticalAlignment="Bottom" StrokeThickness="0" Grid.ColumnSpan="3">
             <Rectangle.Effect>
                 <DropShadowEffect Direction="90" Opacity="0.5" ShadowDepth="3"/>
@@ -228,7 +274,7 @@
                 <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/ReWind.png"/>
             </Button.Background>
         </Button>
-        <Image x:Name="AlbumArtImage" HorizontalAlignment="Left" Height="64" Margin="0,545,0,0" VerticalAlignment="Top" Width="59" Stretch="Fill"/>
+        <Image x:Name="AlbumArtImage" HorizontalAlignment="Left" Height="64" Margin="0,545,0,0" VerticalAlignment="Bottom" Width="59" Stretch="Fill"/>
         <Button x:Name="PlayButton" Content="" HorizontalAlignment="Left" Margin="110,0,0,15" VerticalAlignment="Bottom" Width="25" Height="25" BorderThickness="0" Click="PlayButton_Click">
             <Button.Background>
                 <ImageBrush Stretch="Uniform"/>
@@ -240,7 +286,7 @@
             </Button.Background>
         </Button>
         <Label x:Name="SongName" Content="Song Name" HorizontalAlignment="Left" Margin="59,0,0,36" VerticalAlignment="Bottom" Foreground="White" FontFamily="Microsoft Tai Le" FontSize="14.667" FontWeight="Bold" Grid.ColumnSpan="3" Width="867"/>
-        <Slider x:Name="slider" Style="{StaticResource MyCustomStyleForSlider}" Margin="94,0,0,12" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="23" Foreground="White" Grid.Column="1"/>
+        <Slider x:Name="slider" Style="{StaticResource MyCustomStyleForSlider}" Margin="94,0,0,12" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="23" Foreground="White" Grid.Column="1" MouseDown="slider_MouseDown"/>
         <Label x:Name="remainingTime" Content="0:00" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,10,31" VerticalAlignment="Bottom" Foreground="White" FontFamily="Microsoft Tai Le"/>
 
 
@@ -249,7 +295,7 @@
                 <DropShadowEffect Direction="90" Opacity="0.5" RenderingBias="Quality"/>
             </Image.Effect>
         </Image>
-        <MediaElement Name="mediaElement1" Grid.Column="2" Margin="209,444,0,65"/>
+        <MediaElement Name="mediaElement1" Grid.Column="2" Margin="209,444,0,65" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Name="SelectedArtist" Content="Artist: " HorizontalAlignment="Left" Margin="11,233,0,0" VerticalAlignment="Top" FontFamily="Microsoft Tai Le" FontSize="20" Foreground="White" Grid.ColumnSpan="2" Width="284"/>
         <Label Name="SelectedAlbum" Content="Album: " HorizontalAlignment="Left" Margin="11,163,0,0" VerticalAlignment="Top" FontFamily="Microsoft Tai Le" FontSize="20" Foreground="White" Grid.ColumnSpan="2" Width="284"/>
         <Label Name="SelectedYear" Content="Year: " HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" FontFamily="Microsoft Tai Le" FontSize="20" Foreground="White" Grid.ColumnSpan="2" Width="285"/>
@@ -259,12 +305,12 @@
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Volume.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Rectangle Name="volumeRect" Grid.Column="1" Fill="#FF2196F3" HorizontalAlignment="Left" Height="100" Margin="30,497,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="30">
+        <Rectangle Name="volumeRect" Grid.Column="1" Fill="#FF2196F3" HorizontalAlignment="Left" Height="100" Margin="30,0,0,10" Stroke="Black" StrokeThickness="0" VerticalAlignment="Bottom" Width="30" Visibility="Collapsed">
             <Rectangle.Effect>
                 <DropShadowEffect Direction="90" Opacity="0.5"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Slider x:Name="volumeSlider" Style="{StaticResource MyCustomStyleForSlider}" Margin="200,0,374,49" VerticalAlignment="Bottom" Height="20" Foreground="White" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" ValueChanged="volumeSlider_ValueChanged" IsDirectionReversed="True" Value="10">
+        <Slider x:Name="volumeSlider" Style="{StaticResource MyCustomStyleForSlider}" Margin="200,0,374,49" VerticalAlignment="Bottom" Height="20" Foreground="White" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" ValueChanged="volumeSlider_ValueChanged" IsDirectionReversed="True" Value="10" Visibility="Collapsed">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -274,7 +320,6 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        
 
     </Grid>
 </Window>

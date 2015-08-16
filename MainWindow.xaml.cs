@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -11,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -20,6 +22,11 @@ namespace TelMusic
 {
     public partial class MainWindow : Window
     {
+
+        bool SHOW_TASK_COMP_TIMER = false;
+
+        string[] COMMAND_LINE_ARGS;
+
         List<string> LoadedFiles;
 
         TagLib.File[] CachedFiles;
@@ -35,13 +42,23 @@ namespace TelMusic
         string PlaylistDescription;
 
         DispatcherTimer timerVideoTime;
+        DispatcherTimer dropDownAnimation;
 
         muComp currentlyPlayingComp;
         TagLib.File currentlyPlayingTagLib;
 
+        
+
+        //Debug
+        Stopwatch stopwatch;
+
         public MainWindow()
         {
+            stopwatch = new Stopwatch();
+
+            stopwatch.Start();
             InitializeComponent();
+            COMMAND_LINE_ARGS = Environment.GetCommandLineArgs();
             var converter = new System.Windows.Media.BrushConverter();
             var brush = (Brush)converter.ConvertFromString(Properties.Settings.Default.ColorScheme);
 
@@ -59,12 +76,22 @@ namespace TelMusic
             volumeSlider.Visibility = System.Windows.Visibility.Collapsed;
             volumeRect.Visibility = System.Windows.Visibility.Collapsed;
 
-            //LoadedAlbums = new List<muComp>();
-            //LoadedArtist = new List<muComp>();
             LoadedSongs = new List<muComp>();
             SongQue = new List<muComp>();
 
             PlayButton.Content = FindResource("Play");
+
+            if (COMMAND_LINE_ARGS.Length > 0)
+            {
+                if (COMMAND_LINE_ARGS[0] != null)
+                {
+                    
+                }
+            }
+            stopwatch.Stop();
+            if (SHOW_TASK_COMP_TIMER)
+                Console.WriteLine("Initialization took {0}ms", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
         }
 
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,6 +106,7 @@ namespace TelMusic
 
         private void artistSelectionchanged(object sender, SelectionChangedEventArgs e)
         {
+            stopwatch.Start();
             if (tierArtist.SelectedItem != null)
             {
                 string selectedArtist = (tierArtist.SelectedItem as ListViewItem).Content.ToString();
@@ -112,10 +140,15 @@ namespace TelMusic
 
                 tierAlbum.SelectedIndex = 0;
             }
+            stopwatch.Stop();
+            if (SHOW_TASK_COMP_TIMER)
+                Console.WriteLine("Album generation took {0}ms", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
         }
 
         private void albumSelectionchanged(object sender, SelectionChangedEventArgs e)
         {
+            stopwatch.Start();
             if (tierAlbum.SelectedItem != null)
             {
                 string selectedAlbum = (tierAlbum.SelectedItem as ListViewItem).Content.ToString();
@@ -151,11 +184,14 @@ namespace TelMusic
                 }
             }
 
-            //foundSongs.AddRange()
-
+            stopwatch.Stop();
+            if (SHOW_TASK_COMP_TIMER)
+                Console.WriteLine("Song generation took {0}ms", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
         }
         private void songSelectionchanged(object sender, SelectionChangedEventArgs e)
         {
+            stopwatch.Start();
             if (tierSongs.SelectedItem != null)
             {
 
@@ -219,7 +255,10 @@ namespace TelMusic
                     selectionImage.Source = image;
                 }
             }
-
+            stopwatch.Stop();
+            if (SHOW_TASK_COMP_TIMER)
+                Console.WriteLine("Song data generation took {0}ms", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
         }
 
         void mediaElement1_MediaEnded(object sender, RoutedEventArgs e)
@@ -251,9 +290,6 @@ namespace TelMusic
             slider.AddHandler(MouseLeftButtonUpEvent,
                   new MouseButtonEventHandler(timeSlider_MouseLeftButtonUp),
                   true);
-
-
-
         }
 
         private void timeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -343,6 +379,7 @@ namespace TelMusic
 
         public void ReloadSongs()
         {
+            stopwatch.Start();
             try
             {
                 tierSongs.Items.Clear();
@@ -441,6 +478,11 @@ namespace TelMusic
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
             }
+
+            stopwatch.Stop();
+            if (SHOW_TASK_COMP_TIMER)
+                Console.WriteLine("Reloading songs took {0}ms", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
         }
 
         private void selectionImage_SourceUpdated(object sender, DataTransferEventArgs e)
@@ -457,6 +499,8 @@ namespace TelMusic
 
             rect1.Fill = brush;
             rect2.Fill = brush;
+
+            mediaElement1.ScrubbingEnabled = Properties.Settings.Default.PauseToScrub;
 
             if (Properties.Settings.Default.AllowCustomWindowSize)
             {
@@ -552,6 +596,7 @@ namespace TelMusic
 
         private void tierSongs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            stopwatch.Start();
             if (tierSongs.SelectedItem != null)
             {
                 mediaElement1.LoadedBehavior = MediaState.Manual;
@@ -605,10 +650,15 @@ namespace TelMusic
                     SongName.Content = currentlyPlayingTagLib.Tag.Title;
                 }
             }
+            stopwatch.Stop();
+            if (SHOW_TASK_COMP_TIMER)
+                Console.WriteLine("Took {0}ms to start song", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
         }
 
         private void savePlaylistButton_Click(object sender, RoutedEventArgs e)
         {
+            stopwatch.Start();
             NewPlaylist np = new NewPlaylist();
             np.ShowDialog();
 
@@ -667,6 +717,107 @@ namespace TelMusic
                     goto NoDirectoryFound;
                 }
             }
+            stopwatch.Stop();
+            if (SHOW_TASK_COMP_TIMER)
+                Console.WriteLine("Playlist generation took {0}ms", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
+        }
+
+        private void slider_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Properties.Settings.Default.PauseToScrub)
+            {
+                mediaElement1.Pause();
+            }
+        }
+
+        private void showPlaylistExpander_Collapsed(object sender, RoutedEventArgs e)
+        {
+            dropDownAnimation = new DispatcherTimer();
+            dropDownAnimation.Interval = TimeSpan.FromTicks(1);
+            dropDownAnimation.Tick += new EventHandler(dropDownTickUP);
+            dropDownAnimation.Start();
+            playlists.Items.Clear();
+        }
+
+        private void showPlaylistExpander_Expanded(object sender, RoutedEventArgs e)
+        {
+            dropDownAnimation = new DispatcherTimer();
+            dropDownAnimation.Interval = TimeSpan.FromMilliseconds(0.1);
+            dropDownAnimation.Tick += new EventHandler(dropDownTickDOWN);
+            dropDownAnimation.Start();
+
+            string[] playlistFiles = Directory.EnumerateFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + "\\My Playlists\\").ToArray();
+
+            foreach (string s in playlistFiles)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Content = s.Split('\\')[s.Split('\\').Length - 1].Split('.')[0];
+                item.Tag = s;
+                playlists.Items.Add(item);
+            }
+            Console.WriteLine("Done enumerationg playlists");
+        }
+
+        private void dropDownTickUP(object sender, EventArgs e)
+        {
+            if (this.Height > 640)
+            {
+                this.Height-=20;
+            }
+            else
+            {
+                dropDownAnimation.Stop();
+            }
+            Console.WriteLine("RISING " + this.Height);
+        }
+
+        private void dropDownTickDOWN(object sender, EventArgs e)
+        {
+            if (this.Height < 640 + 128)
+            {
+                this.Height+=20;
+            }
+            else
+            {
+                dropDownAnimation.Stop();
+            }
+            Console.WriteLine("LOWERING " + this.Height);
+        }
+
+        private void playlists_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tierSongs.Items.Clear();
+            tierAlbum.Items.Clear();
+            tierArtist.Items.Clear();
+
+            Console.WriteLine("Playlist index changed to " + playlists.SelectedIndex);
+            string[] Lines = System.IO.File.ReadAllLines(((ListViewItem)playlists.SelectedItem).Tag.ToString());
+            LoadedFiles = new List<string>();
+            LoadedFiles.Clear();
+            foreach (string s in Lines)
+            {
+                string value = s.Split('|')[1];
+
+                switch (s.Split('|')[0])
+                {
+                    case "Name":
+                        PlaylistName = value;
+                        break;
+                    case "Description":
+                        PlaylistDescription = value;
+                        break;
+                    case "s":
+                        LoadedFiles.Add(value);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid tag found in playlist file");
+                        break;
+
+                }
+            }
+            
+            ReloadSongs();
         }
     }
 
@@ -682,12 +833,12 @@ namespace TelMusic
         {
             //try
             //{
-                muComp result = new muComp();
-                result.artist = input.Split('%')[0];
-                result.album = input.Split('%')[1];
-                result.title = input.Split('%')[2];
-                result.Tags = new object[32];
-                return result;
+            muComp result = new muComp();
+            result.artist = input.Split('%')[0];
+            result.album = input.Split('%')[1];
+            result.title = input.Split('%')[2];
+            result.Tags = new object[32];
+            return result;
             //}
             //catch (Exception e)
             //{
