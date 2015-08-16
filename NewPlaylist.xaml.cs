@@ -24,6 +24,7 @@ namespace TelMusic
 
         public NewPlaylist()
         {
+            this.Owner = App.Current.MainWindow;
             InitializeComponent();
             label1.Visibility = Visibility.Collapsed;
             textBox.Visibility = Visibility.Collapsed;

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TelMusic"
         mc:Ignorable="d"
-        Title="New Playlist" Height="147.443" Width="358.807" ResizeMode="NoResize">
+        Title="New Playlist" Height="147.443" Width="377.807" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" Topmost="True">
     <Grid>
         <Button x:Name="newPlaylistButton" Content="New Playlist" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110" Height="40" Background="#00DDDDDD" Click="newPlaylistButton_Click"/>
         <Button x:Name="existingPlaylistButton" Content="Existing Playlist" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="110" Height="40" Background="#00DDDDDD" Click="existingPlaylistButton_Click"/>
         <Label x:Name="label" Content="Creates a brand new playlist" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" Background="#00B9B9B9" Foreground="#FFB9B9B9" Width="159"/>
-        <Label x:Name="label_Copy" Content="Adds selected songs to an existing playlist" HorizontalAlignment="Left" Margin="120,68,0,0" VerticalAlignment="Top" Background="#00B9B9B9" Foreground="#FFB9B9B9" Width="232"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="120,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyDown="textBox_KeyDown"/>
-        <Label x:Name="label1" Content="Name of playlist" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="Adds selected songs to an existing playlist" HorizontalAlignment="Left" Margin="120,68,0,0" VerticalAlignment="Top" Background="#00B9B9B9" Foreground="#FFB9B9B9" Width="242"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="105,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyDown="textBox_KeyDown"/>
+        <Label x:Name="label1" Content="Name of playlist" HorizontalAlignment="Left" Margin="9,4,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
