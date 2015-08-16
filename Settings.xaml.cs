@@ -21,6 +21,8 @@ namespace TelMusic
     {
         public Settings()
         {
+
+            this.Owner = App.Current.MainWindow;
             InitializeComponent();
 
             customSize.IsChecked = Properties.Settings.Default.AllowCustomWindowSize;
@@ -45,6 +47,7 @@ namespace TelMusic
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.Save();
             this.Close();
         }
 
@@ -56,7 +59,11 @@ namespace TelMusic
         private void invalidSongChecked(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.AllowImproperSongRegistry = importInvalidSongs.IsChecked.Value;
-            Properties.Settings.Default.Save();
+        }
+
+        private void pauseToScrubChecked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.PauseToScrub = pauseToScrub.IsChecked.Value;
         }
     }
 }

@@ -26,7 +26,7 @@
         <Rectangle Name="colorRect" Fill="#FF2196F3" HorizontalAlignment="Left" Height="50                    " Stroke="Black" StrokeThickness="0" VerticalAlignment="Bottom" Width="294"/>
         <Button Content="Reset Window Size" HorizontalAlignment="Left" Margin="1,0,0,50" VerticalAlignment="Bottom" Width="106" Background="#00DDDDDD" BorderThickness="1"/>
         <Button Content="Ok" HorizontalAlignment="Right" Margin="0,0,1,50" VerticalAlignment="Bottom" Width="75" Background="White" Click="Button_Click"/>
-        <CheckBox x:Name="pauseToScrub" Content="Pause to scrub" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top" Checked="invalidSongChecked"/>
+        <CheckBox x:Name="pauseToScrub" Content="Pause to scrub" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top" Checked="pauseToScrubChecked"/>
         <Label Content="Will result in less jerkiness whilst scrubbing" HorizontalAlignment="Left" Margin="30,142,0,0" VerticalAlignment="Top" Background="White" Foreground="#FFB9B9B9"/>
 
     </Grid>
