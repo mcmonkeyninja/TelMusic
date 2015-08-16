@@ -25,6 +25,7 @@ namespace TelMusic
 
         public AddMusicWindow()
         {
+            this.Owner = App.Current.MainWindow;
             InitializeComponent();
         }
 
