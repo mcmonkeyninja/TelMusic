@@ -8,9 +8,20 @@ but still in as organized of a fasion as possible.
 
 <h1>TelMusic v.1.0 in its native Windows 10 glory</h1>
 <h2>(Demonstrating how to add a group of songs to a playlist)</h2>
-<img src="http://puu.sh/jyXne/d5529e9f34.jpg" alt="Error loading image">
+<img src="http://puu.sh/jDJGI/cb7b2ca461.jpg" alt="Error loading image">
 
 <h1>Changelog</h1>
+    Version 1.3
+        Additions:
+            Added drop-down to show all existing playlists (To avoid having to deal with the open file dialog window for every             launch)
+        Fixed:
+            Fixed all dialogs startup positions to be centered
+        Changed:
+            More code cleanup and performance improvements
+
+    Version 1.2.1
+        Fixed major playlist saving/laoding problems
+
     Version 1.1
         Fixed:
             Fixed error with loading a playlist that contained a song that has a special character in it
