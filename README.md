@@ -6,8 +6,8 @@ player but with a modern design and simple feel. Every action you make (except a
 conducted within the initial, global screen. No switching panels, or new pages, everything is served to you then and there,
 but still in as organized of a fasion as possible.
 
-<h1>TelMusic v.1.0 in its native Windows 10 glory</h1>
-<h2>(Demonstrating how to add a group of songs to a playlist)</h2>
+<h1>TelMusic v.1.3 in its native Windows 10 glory</h1>
+<h2></h2>
 <img src="http://puu.sh/jDJGI/cb7b2ca461.jpg" alt="Error loading image">
 
 <h1>Changelog</h1>
@@ -25,7 +25,6 @@ but still in as organized of a fasion as possible.
     Version 1.1
         Fixed:
             Fixed error with loading a playlist that contained a song that has a special character in it
-
 
     Version 1.0
     Additions:
